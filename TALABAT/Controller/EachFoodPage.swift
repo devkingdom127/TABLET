@@ -50,7 +50,7 @@ class EachFoodPage : UIViewController {
         self.seecartBtn.applyGradient(colors: [Utils.shared.UIColorFromRGB(0x55C8FA).cgColor,Utils.shared.UIColorFromRGB(0x55C8FE).cgColor])
 
         loadingView.startAnimating()
-        if let url = URL(string: "http://sandwichmap-control.me/public/files/\((eachFoodInfo.foodImg).replacingOccurrences(of: " ", with: "%20"))") {
+        if let url = URL(string: baseFileURL + "\((eachFoodInfo.foodImg).replacingOccurrences(of: " ", with: "%20"))") {
             self.foodImg.sd_setImage(with: url, placeholderImage: UIImage(named: "noImg"), options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
                 if( error != nil) {
                 print("Error while displaying image" , (error?.localizedDescription)! as String)

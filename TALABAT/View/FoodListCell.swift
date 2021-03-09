@@ -63,7 +63,7 @@ class FoodListCell: UICollectionViewCell {
     didSet {
         if let eachfood = eachfood {
             print(eachfood.foodImg)
-            if let url = URL(string: "http://sandwichmap-control.me/public/files/\(eachfood.foodImg)") {
+            if let url = URL(string: baseFileURL + "\(eachfood.foodImg)") {
 //                SDImageCache.shared.removeImage(forKey: url.description, withCompletion: nil)
                 self.imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "noImg"), options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
                     if( error != nil) {

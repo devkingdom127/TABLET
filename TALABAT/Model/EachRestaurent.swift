@@ -29,7 +29,7 @@
 import UIKit
 
 class EachRestaurent: NSObject {
-    var restaurentID: String = ""
+    var restaurentID: Int = 0
     var restaurentCity: String = ""
     var restaurentCategoty: String = ""
     var restaurentName: String = ""
@@ -43,7 +43,7 @@ class EachRestaurent: NSObject {
     var restaurentResStatus: String = ""
     
     init(dic: [String: Any]) {
-        self.restaurentID = dic["id"] as! String
+        self.restaurentID = dic["id"] as! Int
         self.restaurentCity = dic["restaurant_city"] as! String
         self.restaurentCategoty = dic["restaurant_category"] as! String
         self.restaurentName = dic["restaurant_name"] as! String
@@ -53,7 +53,13 @@ class EachRestaurent: NSObject {
         self.restaurentLogo = dic["file_name"] as! String
         self.restaurentRank = dic["rank"] as! String
         self.restaurentStatus = dic["status"] as! String
-        self.restaurentFee = dic["fee"] as! String
+        if dic["fee"] as? String == nil {
+            self.restaurentFee = "0"
+        }
+        else {
+            self.restaurentFee = dic["fee"] as! String
+        }
+        
         self.restaurentResStatus = dic["res_status"] as! String
     }
 }

@@ -66,7 +66,7 @@ class VerifyPhonePage: UIViewController {
         ]
        
     print(parameters1)
-        AF.request("http://sandwich-map.store/api/check-verifycode", method: .post, parameters: parameters1, encoding: JSONEncoding.default).responseJSON
+        AF.request(storeURL + "check-verifycode", method: .post, parameters: parameters1, encoding: JSONEncoding.default).responseJSON
         { (response) in
                 print(response.result)
             if "\(response.result)" == "success(ok)" {
@@ -127,7 +127,7 @@ class VerifyPhonePage: UIViewController {
         ]
     print(parameters)
         
-        AF.request("http://sandwich-map.store/public/api/store-order-infomation", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
+        AF.request(storeURL + "store-order-infomation", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
         { [self] (response) in
                 print(response.result)
             if "\(response.result)" != "success(no)" {

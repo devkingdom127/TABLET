@@ -67,7 +67,7 @@ class InputPhonePage: UIViewController {
         ]
         print(parameters)
         
-        AF.request("http://sandwich-map.store/api/send-verify-sms", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
+        AF.request(storeURL + "send-verify-sms", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
         { [self] (response) in
                 print(response.result)
             if "\(response.result)" == "success(ok)" {

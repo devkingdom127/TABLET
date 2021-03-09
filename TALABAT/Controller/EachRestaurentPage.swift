@@ -120,7 +120,7 @@ class EachRestaurentPage : UIViewController {
         loadingView1.startAnimating()
        
         print("\(eachRestaurentInfo.restaurentLogo)")
-        if let url = URL(string: "http://sandwichmap-control.me/public/files/\((eachRestaurentInfo.restaurentLogo).replacingOccurrences(of: " ", with: "%20"))") {
+        if let url = URL(string: baseFileURL + "\((eachRestaurentInfo.restaurentLogo).replacingOccurrences(of: " ", with: "%20"))") {
 //            SDImageCache.shared.removeImage(forKey: url.description, withCompletion: nil)
             self.restaurentImg.sd_setImage(with: url, placeholderImage: UIImage(named: "noImg"), options: SDWebImageOptions(rawValue: 0), completed: { [self] (image, error, cacheType, imageURL) in
                 if( error != nil) {
@@ -325,7 +325,7 @@ extension EachRestaurentPage {
         var temp_AllfoodsOfRestaurent = [EachFood]()
         var temp_AllfoodsOfRestaurent1 = [EachFood]()
         // 1
-        let request = AF.request("http://sandwichmap-control.me/public/api/get-product-api/\(eachRestaurentInfo.restaurentID)")
+        let request = AF.request(baseURL + "get-product-api/\(eachRestaurentInfo.restaurentID)")
         request.responseJSON { [self] data in
             if let result = data.value {
                 if let jsonArrays = JSON(result).arrayObject {
@@ -363,7 +363,7 @@ extension EachRestaurentPage {
         categoryofRestaurent.removeAll()
         // 1
         print(eachRestaurentInfo.restaurentID)
-        let request = AF.request("http://sandwichmap-control.me/public/api/get-restaurant-category/\(eachRestaurentInfo.restaurentID)")
+        let request = AF.request(baseURL + "get-restaurant-category/\(eachRestaurentInfo.restaurentID)")
         request.responseJSON { [self] data in
             if let result = data.value {
                 if let jsonArrays = JSON(result).arrayObject {

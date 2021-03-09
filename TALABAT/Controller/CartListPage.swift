@@ -158,7 +158,7 @@ class CartListPage : UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartListCell", for: indexPath) as! CartListCell
-        if let url =  URL(string:"http://sandwichmap-control.me/public/files/\((SharedManager.shared.preparing_AllOrderedFood[indexPath.item].OrderedFoodInfoOfFood.foodImg).replacingOccurrences(of: " ", with: "%20"))") {
+        if let url =  URL(string: baseFileURL + "\((SharedManager.shared.preparing_AllOrderedFood[indexPath.item].OrderedFoodInfoOfFood.foodImg).replacingOccurrences(of: " ", with: "%20"))") {
 //            SDImageCache.shared.removeImage(forKey: url.description, withCompletion: nil)
             cell.EachCartImg.sd_setImage(with: url, placeholderImage: UIImage(named: "noImg"), options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
                 if( error != nil) {

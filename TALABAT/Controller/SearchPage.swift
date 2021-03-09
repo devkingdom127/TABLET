@@ -66,7 +66,7 @@ class SearchPage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
 
-        if let url = URL(string: "http://sandwichmap-control.me/public/files/\(selectedRestaurents_search[indexPath.item].restaurentLogo.replacingOccurrences(of: " ", with: "%20"))") {
+        if let url = URL(string: baseFileURL + "\(selectedRestaurents_search[indexPath.item].restaurentLogo.replacingOccurrences(of: " ", with: "%20"))") {
             cell.restaurentImg.sd_setImage(with: url, placeholderImage: UIImage(named: "noImg"), options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
                     if( error != nil) {
                     print("Error while displaying image" , (error?.localizedDescription)! as String)
@@ -97,7 +97,7 @@ class SearchPage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print(indexPath)
         let removeID = restaurentForHistories[indexPath.item].restaurentID
         for item in arr_history {
-            if item.contains(removeID) {
+            if item.contains("\(removeID)") {
                 arr_history.removeAll { $0 == item }
                 userDefaults.setValue(arr_history, forKey: SharedManager.shared.cityInfo)
             }
@@ -108,7 +108,7 @@ class SearchPage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func historySave() {
         arr_history = userDefaults.stringArray(forKey: SharedManager.shared.cityInfo) ?? []
         for item in arr_history {
-            if item.contains(selectedRestaurents_search[selectedRestaurentInex_search].restaurentID) {
+            if item.contains("\(selectedRestaurents_search[selectedRestaurentInex_search].restaurentID)") {
                 arr_history.removeAll { $0 == item }
             }
         }
@@ -135,7 +135,7 @@ class SearchPage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let restaurent_ID = component.last
             var restaurentForHistory : EachRestaurent!
             for restaurent in self.cityRestaurents_search {
-                if restaurent.restaurentID.contains(restaurent_ID!) {
+                if restaurent.restaurentID == Int(restaurent_ID!) {
                     restaurentForHistory = restaurent
                     restaurentForHistories.append(restaurentForHistory)
                 }

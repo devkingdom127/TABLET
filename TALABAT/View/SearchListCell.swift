@@ -53,7 +53,7 @@ class SearchListCell: UICollectionViewCell {
             if let eachrestaurent = eachrestaurent {
                 print("\(eachrestaurent.restaurentLogo)")
                 self.loadingView.startAnimating()
-                if let url = URL(string: "http://sandwichmap-control.me/public/files/\((eachrestaurent.restaurentLogo).replacingOccurrences(of: " ", with: "%20"))") {
+                if let url = URL(string: baseFileURL + "\((eachrestaurent.restaurentLogo).replacingOccurrences(of: " ", with: "%20"))") {
 //                    SDImageCache.shared.removeImage(forKey: url.description, withCompletion: nil)
                     self.imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "noImg"), options: SDWebImageOptions(rawValue: 0), completed: { (image, error, cacheType, imageURL) in
                         if( error != nil) {

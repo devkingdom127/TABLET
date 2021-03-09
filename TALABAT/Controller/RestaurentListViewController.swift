@@ -286,7 +286,7 @@ extension RestaurentListViewController {
     
     func fetchRestaurents() {
         allRestaurents.removeAll()
-        let request = AF.request("http://sandwichmap-control.me/public/api/get-restaurant-api/")
+        let request = AF.request(baseURL + "get-restaurant-api/")
         request.responseJSON { [self] data in
             if let result = data.value {
                 if let jsonArrays = JSON(result).arrayObject {
@@ -310,9 +310,9 @@ extension RestaurentListViewController {
                             CityBtnPressed()
                         }
                     }
-                    self.loadingView1.stopAnimating()
                 }
             }
+            self.loadingView1.stopAnimating()
         }
     }
 }
